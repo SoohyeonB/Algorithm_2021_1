@@ -44,9 +44,31 @@ int get(LinkedListType* L, int pos) {
 void addLast(LinkedListType*L, int item) {
 	ListNode* node = (ListNode*)malloc(sizeof(ListNode));
 	ListNode* before = L->head;
-
+	
+	node->data = item; //삽입하고 싶은 노드 삽입
+	node->link = before->link;
+	before->link = node;
 
 }
+
+//remove 연결하는거 좀더 해야함 
+int remove(LinkedListType* L, int pos) {
+	ListNode* p = L->head;
+	if (p == NULL)
+		printf("The list is blank.\n");
+	else {
+		//p->link = re
+	}
+	for (int i = 1; i < pos; i++)
+		p = p->link;
+	return  p->data;
+}
+
+int removeFirst(LinkedListType* L) {
+	ListNode* p = L->head;
+	return p->data;
+}
+
 
 void set(LinkedListType* L, int pos, int item) {
 	ListNode* p = L->head;
