@@ -27,5 +27,8 @@
     <ClCompile Include="Assingment1_02_arrayVer.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Assignment1_02_LinkedListVer.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

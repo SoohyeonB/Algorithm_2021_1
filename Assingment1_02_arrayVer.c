@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-/*생일케이크 문제 배열 ver 1*/
+/*생일케이크 문제 배열 ver 1, 2*/
 
 int A[7];
 #define N 7
@@ -32,7 +32,7 @@ int runSimulation_ver1(int n, int k) {
                 i++;
         }
         A[r] = 0;   //remove candle
-        printArray(7, A);
+        printArray(7);
         n = n - 1;
         while (A[r] == 0) {
             r = (r + 1) % N;
@@ -43,21 +43,28 @@ int runSimulation_ver1(int n, int k) {
 }
 
 //remove rth index
-void removeIndex(int r) {
-
+void removeIndex(int r, int n) {
+    for (int i = r; i < n; i++) {
+        A[r] = A[r + 1];
+    }
 }
 
-int runSimulation_ver2(int A[], int n, int k) {
-
-    return 0;
+int runSimulation_ver2(int n, int k) {
+    int r = 0;
+    while (n > 1) {
+        r = (r + k) % n;
+        removeIndex(r, n);
+        n--;
+    }
+    return A[0];
 }
 
 int candle(int n, int k) {
 
     buildList(n);
     printArray(n);
-    return runSimulation_ver1(n, k);
-    //return runSimulation_ver2(A, n, k);
+    //return runSimulation_ver1(n, k);
+    return runSimulation_ver2( n, k);
 }
 
 
