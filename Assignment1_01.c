@@ -40,33 +40,56 @@ int get(LinkedListType* L, int pos) {
 	return p->data;
 }
 
-//마지막에 넣기
-void addLast(LinkedListType*L, int item) {
-	ListNode* node = (ListNode*)malloc(sizeof(ListNode));
-	ListNode* before = L->head;
+
+int removeNode(LinkedListType* L, int pos) {
+	ListNode* removed = L->head;
+	ListNode* p = L->head;
+	int key;
 	
-	node->data = item; //삽입하고 싶은 노드 삽입
-	node->link = before->link;
-	before->link = node;
+	for (int i = 2; i < pos; i++) {
+		p = p->link;
+	}
+	removed = p->link;
+	if (removed == NULL)
+		printf("The list is blank.\n");
+	else {
+		p->link = p->link->link;
+		key = removed->data;
+		free(removed);
+		return key;
+	}
+	return 0;
 
 }
 
-//remove 연결하는거 좀더 해야함 
-int remove(LinkedListType* L, int pos) {
+int removeLast(LinkedListType* L) {
 	ListNode* p = L->head;
-	if (p == NULL)
+	int key;
+	if (p == NULL) {
 		printf("The list is blank.\n");
-	else {
-		//p->link = re
+		return 0;
 	}
-	for (int i = 1; i < pos; i++)
+	while (p!= NULL) {
 		p = p->link;
-	return  p->data;
+		if (p->link->link == NULL) {
+			key = p->link->data;
+			p->link = NULL;		//맨마지막 노드 이전 노드의 링크 삭제
+			break;
+		}
+	}
+
+	return key;
 }
 
 int removeFirst(LinkedListType* L) {
-	ListNode* p = L->head;
-	return p->data;
+	ListNode* removed;
+
+	if (L->head == NULL) return NULL;
+	removed = L->head;
+	L->head = removed->link;
+
+	free(removed);
+	return L->head->data;
 }
 
 
@@ -95,10 +118,15 @@ void main() {
 	add(&list, 1, 40); printList(&list);
 	add(&list, 1, 50); printList(&list);
 	add(&list, 3, 60); printList(&list);
+	printf("\n");
+
+	printf("removed: %d  ",removeFirst(&list)); printList(&list);
+	printf("removed: %d  ", removeLast(&list)); printList(&list);
+	printf("removed: %d  ", removeNode(&list, 2)); printList(&list);
 
 	int pos;
 	printf("몇 번 노드의 값을 반환할까요?");
-	scanf_s("%d", &pos);
+	scanf_s("%d", &pos); 
 	printf("%d번 노드의 값은 %d\n", pos, get(&list, pos));
 
 }
