@@ -33,6 +33,18 @@ void add(LinkedListType* L, int pos, int item) {
 	before->link = node;
 }
 
+void addLast(LinkedListType* L, int item) {
+	ListNode* node = (ListNode*)malloc(sizeof(ListNode));
+	ListNode* before = L->head;
+	while (before->link != NULL) {
+		before = before->link;
+		if (before->link == NULL) break;
+	}
+	node->data = item;
+	node->link = NULL;
+	before->link = node;
+}
+
 int get(LinkedListType* L, int pos) {
 	ListNode* p = L->head;
 	for (int i = 1; i < pos; i++)
@@ -119,6 +131,10 @@ void main() {
 	add(&list, 1, 50); printList(&list);
 	add(&list, 3, 60); printList(&list);
 	printf("\n");
+
+	addLast(&list, 0); printList(&list);	
+	printf("\n");
+
 
 	printf("removed: %d  ",removeFirst(&list)); printList(&list);
 	printf("removed: %d  ", removeLast(&list)); printList(&list);

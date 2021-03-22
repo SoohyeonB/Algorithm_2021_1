@@ -24,6 +24,7 @@ void printNode(LinkedListType *L) {
 	printf("\n");
 }
 
+//동적할당
 ListNode* getNode() {
 	ListNode* p = (ListNode*)malloc(sizeof(ListNode));
 	return p;
@@ -33,6 +34,7 @@ LinkedListType* buildList(LinkedListType *L, int n) {
 	ListNode* p = (ListNode*)malloc(sizeof(ListNode));
 	L->head = p;
 	p->data = 1;
+
 	for (int i = 2; i <=n; i++) {
 		p->link = getNode();
 		p = p->link;
@@ -46,8 +48,7 @@ int runSimulation(LinkedListType* L, int n, int k) {
 	ListNode* pnext = p->link;
 
 	while (p != p->link) {
-		printNode(L);
-
+		
 		for (int i = 1; i < k; i++)
 			p = p->link;
 		pnext = p->link;
