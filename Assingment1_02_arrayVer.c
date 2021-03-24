@@ -20,9 +20,9 @@ void printArray(int n) {
     printf("] \n");
 }
 
+
 int runSimulation_ver1(int n, int k) {
     int r = 0;
-    int num = 1;
 
     while (n > 1) {
         int i = 0;
@@ -39,7 +39,7 @@ int runSimulation_ver1(int n, int k) {
         }
 
     }
-    return r;
+    return A[r];
 }
 
 //remove rth index
@@ -63,8 +63,8 @@ int candle(int n, int k) {
 
     buildList(n);
     printArray(n);
-    //return runSimulation_ver1(n, k);
-    return runSimulation_ver2( n, k);
+    return runSimulation_ver1(n, k);
+    //return runSimulation_ver2( n, k);
 }
 
 
