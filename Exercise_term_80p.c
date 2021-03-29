@@ -12,6 +12,7 @@ void spans1(int X[], int S[]) {
 	}
 }
 
+
 void main() {
 	int X[SIZE] = { 6,3,4,2,5,3 };
 	int S[SIZE] = { 0 };
