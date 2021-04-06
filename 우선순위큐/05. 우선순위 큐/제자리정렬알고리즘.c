@@ -3,7 +3,7 @@
 #include <time.h>
 #include <Windows.h> //sleep 함수 사용하기 위한 헤더파일
 
-#define MAX_SIZE 15
+#define MAX_SIZE 4
 #define SWAP(x,y,t)((t)=(x), (x)=(y), (y)=(t))
 
 void selection_sort(int list[], int n) {
