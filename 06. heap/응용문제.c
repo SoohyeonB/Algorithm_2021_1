@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
+/*
+ê²°ê³¼ëŠ” ì•Œë§ê²Œ ì›í•˜ëŠ”ê²Œ ë‚˜ì™”ëŠ”ë° ìê¾¸ í¬ê¸° ì—ëŸ¬ê°€ ë‚œë‹¤... ì–´ë””ì„œ ë‚œê±¸ê¹Œ?
+*/
 
 #define MAX 100
 
@@ -88,18 +90,18 @@ int findLastNode(HeapType *heap, int size) {
 
 	pop(stack);
 	printStack(stack);
-	//¿©±â±îÁö Á¦´ë·Î µÊ
+	//ì—¬ê¸°ê¹Œì§€ ì œëŒ€ë¡œ ë¨
 
 	
 	int count = 1;
 	while (stack->size != 0) {
-		printf("findLastCode, %d¹øÂ° \n", count);
+		printf("findLastCode, %dë²ˆì§¸ \n", count);
 		count++;
 		int bit = pop(stack);
 		printf("bit ; %d\n", bit);
 		printStack(stack);
 
-		if (bit == 0)// leftchild·Î ÀÌµ¿
+		if (bit == 0)// leftchildë¡œ ì´ë™
 		{
 			i = i * 2;
 			printf("i = %d \n", i);
@@ -114,19 +116,19 @@ int findLastNode(HeapType *heap, int size) {
 		}
 	}
 	return i;
-		//heap->heap[i];  //¸¶Áö¸· ³ëµåÀÇ °ª ¹İÈ¯
+		//heap->heap[i];  //ë§ˆì§€ë§‰ ë…¸ë“œì˜ ê°’ ë°˜í™˜
 }
 
 void main() {
 	srand(time(NULL));
 	HeapType heap;
 	init_h(&heap); 
-	//heap¸¸µé°í
+	//heapë§Œë“¤ê³ 
 	for (int i = 1; i <= 10; i++) {
 		insertItem(&heap, rand() % 50 + 1);
 	}
 	printHeap(&heap);
-	//¸¶Áö¸· ³ëµå ¹İÈ¯
+	//ë§ˆì§€ë§‰ ë…¸ë“œ ë°˜í™˜
 
 	printf("\n");
 	printf("%d", findLastNode(&heap, 10));
