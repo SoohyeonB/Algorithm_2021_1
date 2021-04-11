@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+
 
 #define MAX 100
 
@@ -21,46 +23,111 @@ void init_h(HeapType* heap) {
 	heap->size = 0;
 }
 
+//stack
 int pop(StackType* stack) {
-	return stack->stack[stack->size]; //맨마지막 노드 반환 (맨위)
+	int anse = 2;
+	if (stack->size == 0) return;
+	else {
+		anse = stack->stack[stack->size-1];
+		stack->size--;
+	}
+	return anse;
 }
 
 void push(int i, StackType *stack) {
-	stack->size++;
-	for (int j = 1; j < stack->size; j++) {
-		int tmp = stack->stack[j];
-		stack->stack[j] = stack->stack[j + 1];
-		stack->stack[j + 1] = tmp;
+	return stack->stack[stack->size++] = i;
+}
+
+//heap
+void upHeap(HeapType *heap) {
+	int i = heap->size;
+	int key = heap->heap[i];
+	while ((i != 1) && (key < heap->heap[i / 2])) {
+		heap->heap[i] = heap->heap[i / 2];
+		i /= 2;
 	}
-	stack->stack[0] = i;
+	heap->heap[i] = key;
+}
+
+void insertItem(HeapType *heap, int node) {
+	heap->size += 1;
+	heap->heap[heap->size] = node;
+	upHeap(heap);
+}
+
+void printHeap(HeapType *heap) {
+	for (int i = 1; i <= heap->size; i++) {
+		printf("[%d] ", heap->heap[i]);
+	}
+}
+
+void printStack(StackType* s) {
+	printf("-------stack-----------\n");
+	for (int i = s->size-1; i >= 0; i--) {
+		printf("%d\n", s->stack[i]);
+	}
+	
 }
 
 void binaryExpansion(int i, StackType* stack) {
 	while (i >= 2) {
-		push(i%2, &stack);
-		i /= 2;
+		push(i % 2, stack);
+		i = i / 2;
 	}
-	push(i, &stack);
-	return;
+	push(i, stack);
 }
 
 int findLastNode(HeapType *heap, int size) {
-	StackType* stack = (StackType*) malloc(sizeof(StackType));
-	init_s(&stack);
-	binaryExpansion(heap->size, &stack);
-	int last = pop(&stack);
+	StackType* stack = (StackType*)malloc(sizeof(StackType));
+	int i = 1;
+
+	init_s(stack);
+
+	binaryExpansion(heap->size, stack);
+	printStack(stack);
+
+	pop(stack);
+	printStack(stack);
+	//여기까지 제대로 됨
+
+	
+	int count = 1;
 	while (stack->size != 0) {
-		int bit = pop(&stack);
-		if(bit ==0)
+		printf("findLastCode, %d번째 \n", count);
+		count++;
+		int bit = pop(stack);
+		printf("bit ; %d\n", bit);
+		printStack(stack);
 
-			//heap에 leftchild를 넣어줌
-		else
+		if (bit == 0)// leftchild로 이동
+		{
+			i = i * 2;
+			printf("i = %d \n", i);
 
+		}
+		else if (bit == 1) {
+			i = i * 2 + 1;
+			printf("i = %d \n", i);
+		}
+		else {
+			printf("%d \n", bit);
+		}
 	}
+	return i;
+		//heap->heap[i];  //마지막 노드의 값 반환
 }
 
 void main() {
+	srand(time(NULL));
 	HeapType* heap;
 	init_h(&heap); 
+	//heap만들고
+	for (int i = 1; i <= 10; i++) {
+		insertItem(&heap, rand() % 50 + 1);
+	}
+	printHeap(&heap);
+	//마지막 노드 반환
 
+	printf("\n");
+	printf("%d", findLastNode(&heap, 10));
 }
