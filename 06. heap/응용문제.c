@@ -119,7 +119,7 @@ int findLastNode(HeapType *heap, int size) {
 
 void main() {
 	srand(time(NULL));
-	HeapType* heap;
+	HeapType heap;
 	init_h(&heap); 
 	//heap¸¸µé°í
 	for (int i = 1; i <= 10; i++) {
