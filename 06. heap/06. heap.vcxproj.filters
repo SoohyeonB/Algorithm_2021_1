@@ -24,5 +24,8 @@
     <ClCompile Include="제자리힙정렬.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="응용문제.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

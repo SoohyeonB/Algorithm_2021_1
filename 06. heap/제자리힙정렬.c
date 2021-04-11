@@ -37,7 +37,13 @@ void downHeap(int i) {
 
 
 void upHeap(int i) {
-	if()
+	int i = h->heap_size;
+	int key = h->heap[i];
+	while ((i != 1) && (key < h->heap[i / 2])) {
+		h->heap[i] = h->heap[i / 2];
+		i /= 2;
+	}
+	h->heap[i] = key;
 
 }
 void buildHeap() {
