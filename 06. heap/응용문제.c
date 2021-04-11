@@ -3,6 +3,9 @@
 #include <time.h>
 /*
 결과는 알맞게 원하는게 나왔는데 자꾸 크기 에러가 난다... 어디서 난걸까?
+main 함수에서 heapType 선언부가 잘못됨
+heapType *h 로 선언하고 init(&h)를 하게 되면 포인터 h의 주소값을 주는 것이므로 이중포인터처럼 사용하게 됨
+때문에 heapType h <-- 이렇게 선언해야 원하는 h의 주소가 예쁘게 init함수에 전달됨!!!
 */
 
 #define MAX 100
