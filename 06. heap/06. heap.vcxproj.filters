@@ -18,5 +18,11 @@
     <ClCompile Include="heap구현.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="힙과힙정렬6_3.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="제자리힙정렬.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
